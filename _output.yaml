@@ -1,0 +1,14 @@
+xaringan::moon_reader:
+  lib_dir: "libs"
+  css:
+    - "libs/css/default.css"
+    - "libs/css/custom.css"
+    - "libs/css/custom-fonts.css"
+    - "libs/css/animate.css"
+  seal: true
+  chakra: "libs/js/remark-latest.min.js"
+  nature:
+    highlightStyle: github
+    highlightLines: true
+    countIncrementalSlides: false
+    beforeInit: "libs/js/macros.js"
