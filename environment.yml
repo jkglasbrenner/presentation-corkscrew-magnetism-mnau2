@@ -1,5 +1,5 @@
 ---
-name: teaching-students-modeling-magnets
+name: presentation-corkscrew-magnetism-mnau2
 channels:
   - conda-forge
   - defaults
@@ -25,6 +25,7 @@ dependencies:
   - pip:
     - entrypoints==0.3
     - flake8-bugbear==19.3.0
+    - ghp-import==0.5.5
     - grip==4.5.2
     - mypy==0.701
     - seed-isort-config==1.9.1

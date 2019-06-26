@@ -5,9 +5,13 @@
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROJECT_NAME = presentation
+PROJECT_NAME = presentation_corkscrew_magnetism_mnau2
+
+GITHUB_PAGES_BRANCH = gh-pages
+STAGING_DIR = build
 
 FIGURE_DIR = img
+LIBS_DIR = libs
 
 RM = rm
 COPY = cp
@@ -23,11 +27,15 @@ PRECOMMIT = pre-commit
 
 R ?= Rscript
 
-RMD = presentation.Rmd
+RMD = presentation_corkscrew_magnetism_mnau2.Rmd
 
 XARINGAN = $(RMD:.Rmd=.html)
 XARINGAN_EXT = %.html : %.Rmd
 XARINGAN_OUTPUT = xaringan::moon_reader
+
+PRESENTATION_FILES = \
+    $(FIGURE_DIR) \
+    $(LIBS_DIR)
 
 CLEAN_FILES = *_cache/ *_files/ .Rhistory
 FULL_CLEAN_FILES = *.egg-info/ pip-wheel-metadata/ .pytest_cache/
@@ -40,6 +48,12 @@ define cleanup
     $(FIND) -name "__pycache__" -type d -exec $(RM) -rf {} +
     $(FIND) -name "*.py[co]" -type f -exec $(RM) -rf {} +
     -$(RM) -rf $(CLEAN_FILES)
+endef
+
+define copy_presentation_files
+    cp $(PROJECT_NAME).html $(STAGING_DIR)/index.html
+    $(foreach filepath, $(PRESENTATION_FILES),\
+        cp -rf $(filepath) $(STAGING_DIR);)
 endef
 
 define install_r_packages
@@ -58,6 +72,11 @@ endef
 
 define precommit_cmd
     $(PRECOMMIT) $(1)
+endef
+
+define push_github_pages
+    ghp-import -m "Update presentation" -b $(GITHUB_PAGES_BRANCH) $(STAGING_DIR)
+    git push origin $(GITHUB_PAGES_BRANCH)
 endef
 
 define python_black
@@ -93,6 +112,11 @@ clean:
 conda:
 	$(call update_conda_env)
 
+## Push the presentation to gh-pages
+github: $(STAGING_DIR) xaringan
+	$(call copy_presentation_files)
+	$(call push_github_pages)
+
 ## Install pre-commit hooks
 hooks:
 	$(call precommit_cmd, install)
@@ -111,6 +135,9 @@ xaringan: $(XARINGAN)
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
+
+$(STAGING_DIR):
+	$(call make_subdirectory)
 
 $(XARINGAN): $(XARINGAN_EXT)
 	$(call rmarkdown_render, $(XARINGAN_OUTPUT))

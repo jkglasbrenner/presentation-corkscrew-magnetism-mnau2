@@ -1,0 +1,63 @@
+\RequirePackage{luatex85,shellesc}
+\documentclass[tikz, convert={outext=.svg, command=\unexpanded{pdf2svg \infile\space\outfile}}]{standalone}
+\usepackage{luaotfload}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\colorlet{mainlevel}{black}
+\UseMicrotypeSet[protrusion]{basicmath}
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+\setmainfont{Source Serif Pro}
+\setmathfont{Libertinus Math}
+
+\usetikzlibrary{arrows,calc,shapes.callouts}
+\tikzset{
+  level/.style = {
+    line width=4.0pt
+  },
+  invisiblelevel/.style = {
+    line width=4.0pt,
+    opacity=0
+  },
+  connect/.style = {
+    line width=2.0pt,
+    dashed
+  },
+  invisibleconnect/.style = {
+    line width=2.0pt,
+    opacity=0
+  },
+  energylevels class/.style={
+    every text node part/.style={
+      align=center,
+      font={\LARGE}
+    }
+  },
+  atomlabel class/.style={
+    every text node part/.style={
+      align=center,
+      font={\huge}
+    }
+  },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \foreach \energy/\elevelbegin in {
+    2/1,
+    2/6
+  } {
+    \pgfmathsetmacro\elevelend{\elevelbegin + 1}
+    \draw[invisiblelevel] (\elevelbegin,\energy) -- (\elevelend,\energy);
+  }
+  
+  \draw[draw=black,fill=black] (3, 0) rectangle (5,1);
+  \draw[draw=black,fill=black] (3, 1.5) rectangle (5,2);
+  \draw[draw=black,fill=black] (3, 2.7) rectangle (5,3);
+  
+\end{tikzpicture}
+
+\end{document}
