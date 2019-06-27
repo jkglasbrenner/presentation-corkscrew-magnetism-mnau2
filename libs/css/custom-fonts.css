@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,400,400i,700,700i);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i);
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', serif;
+  font-weight: 400;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 35px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+.remark-code, .remark-inline-code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.remark-inline-code {
+    font-size: 100%;
+}
+
+.remark-slide-content {
+    font-size: 20px;
+}
+
+.title-slide > h1 {
+    font-size: 37px;
+}
+
+.title-slide > h2 {
+    font-size: 22px;
+    font-style: italic;
+}
+
+.title-slide > h3 {
+    font-size: 18px;
+}
+
+.remark-slide-number {
+    font-family: 'Roboto', san-serif;
+    font-size: 13pt;
+    font-weight: 200;
+}
+
+.inverse .remark-slide-number {
+    font-family: 'Roboto', san-serif;
+    font-size: 13pt;
+    font-weight: 200;
+}

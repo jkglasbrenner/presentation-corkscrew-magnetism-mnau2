@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>The corkscrew magnetism of MnAu2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="James K. Glasbrenner" />
+    <meta name="date" content="2019-06-28" />
+    <link rel="stylesheet" href="libs/css/default.css" type="text/css" />
+    <link rel="stylesheet" href="libs/css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="libs/css/custom-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs/css/animate.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The corkscrew magnetism of MnAu<sub>2</sub>
+## Intersecting data science and materials simulations
+<div style="float:left">
+
+</div>
+<hr color='#EB811B' size=1px width=796px>
+### James K. Glasbrenner
+### June 28, 2019
+
+---
+
+
+# Meet manganese auride
+
+.grid[
+.pull-left-60.flex[
+.valign[
+- Single crystal structure is tetragonal and layered
+
+- A metal that is a permanent magnet at room temperature
+
+- Magnetic order forms a corkscrew-like spiral structure
+
+- The spiral angle can be controlled in several ways
+]
+]
+	
+.pull-right-40.flex[
+.valign[
+&lt;img src="img/mnau2_crystal_structure.png" width="90%" /&gt;
+]
+.valign[
+&lt;img src="img/mnau2_magnetic_structure.png" width="75%" /&gt;
+]
+]
+]
+
+---
+
+# Meet manganese auride
+
+.grid[
+.pull-left-60.flex[
+.valign[
+- **Temperature:** magnetic order disappears above 363 degrees Kelvin (194 `\(^{\circ}\)`F)
+
+- **Magnetic fields:** spiral unravels to ferromagnetic order at 10 kilo-oersted (MRI device)
+
+- **Pressure:** spiral unravels to ferromagnetic order at 10 kilobars of pressure (10 times the pressure at the bottom of the Mariana Trench)
+
+.content-box-gray[
+- **Potential logic device:** changing the spiral angle also changes the material's electrical resistance
+]
+]
+]
+	
+.pull-right-40.flex[
+.valign[
+&lt;img src="img/mnau2_crystal_structure.png" width="90%" /&gt;
+]
+.valign[
+&lt;img src="img/mnau2_magnetic_structure.png" width="75%" /&gt;
+]
+]
+]
+
+---
+
+# How to study this?
+
+.grid[
+.grid-valign[
+.content-box-red[
+**Derive a mathematical model**
+]
+.content-box-green[
+**Gather/generate data**
+]
+.content-box-yellow[
+**Model training**
+]
+]
+]
+
+---
+
+# Derive a mathematical model
+
+.grid[
+.content-box-red.grid-valign[
+**Derive a mathematical model**
+
+- Energy-based model for magnetic interactions
+
+- Physically meaningful model parameters
+]
+]
+
+---
+
+# Classical Heisenberg Model
+
+.pull-left[
+&lt;img src="img/heisenberg_model_afm_checkerboard.png" width="85%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;div style="margin-bottom: 10%;"&gt;&lt;/div&gt;
+.content-box-gray.center[Model quantifies the _nature_ and _strength_ of magnetic interactions]
+
+`$$H=\dfrac{1}{2}\sum_{ij}J_{ij}\hat{m}_{i}\cdot\hat{m}_{j}$$`
+
+- _J_ &gt; 0: parallel alignment preferred
+
+- _J_ &lt; 0: anti-parallel alignment preferred
+]
+
+&lt;img src="img/github_neighbormodels.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 1D magnetic spiral model
+
+&lt;img src="img/heisenberg_1d_spiral.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+- The magnetic vectors for manganese auride all sit in-plane and the planes are parallel (known from experiment)
+
+- The relative angle between any two neighboring magnetic vectors is always `\(\varphi\)`, the relative angle between second-nearest neighbors is `\(2\varphi\)`, and so on
+
+- Heisenberg model reduces to the following simplified form,
+
+  `$$E(\varphi)=\dfrac{1}{2}\sum_{n}J_{n}\cos\left(n\varphi\right)$$`
+
+---
+
+# Gather/generate data
+
+.grid[
+.content-box-green.grid-valign[
+**Gather/generate data**
+
+- First-principles electronic structure calculations based on quantum mechanics (density functional theory)
+
+- Serves as a virtual laboratory for investigating a material's electrical, magnetic, structural, and transport properties
+
+- Calculate realistic and accurate energies for different magnetic patterns at different pressures
+]
+]
+
+---
+
+# Electronic structure overview
+
+&lt;img src="img/two_atoms_unbonded.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.center[Energy spectra of 2 simple atoms, no bonding]
+
+---
+
+# Electronic structure overview
+
+&lt;img src="img/two_atoms_bonded.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.center[Energy spectra of 2 bonded atoms]
+
+---
+
+# Electronic structure overview
+
+&lt;img src="img/four_atoms_bonded.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.center[Energy spectra of 4 bonded atoms]
+
+---
+
+# Electronic structure overview
+
+&lt;img src="img/eight_atoms_bonded.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.center[Energy spectra of 8 bonded atoms]
+
+---
+
+# Electronic structure overview
+
+&lt;img src="img/many_atoms_bonded.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.center[Energy spectra of many bonded atoms]
+
+---
+
+# Electronic structure overview
+
+.pull-left[
+* Electrons fill the energy bands much like water fills a drinking glass
+
+* The _Fermi energy_ is where the energy filling process maxes out
+
+* Many important materials properties depend on the location of the Fermi energy
+]
+
+.pull-right[
+&lt;img src="img/bands_schematic.svg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.content-box-gray[
+- **Metal:** The Fermi energy lies within an energy band
+- **Insulator/semiconductor:** The Fermi energy sits at the top of an energy band
+]
+
+.content-box-green.center[The topology of the _band structure_ depends on a material's structural and chemical details.]
+
+---
+
+# .font80[First-principles structural relaxation]
+
+- **Optimization problem:** constrain the volume of our material, then move the atoms around until the energy is minimized
+
+- **Data output:** energy as a function of volume
+
+- **Birch-Murnaghan equation of state model:** mapping between volume and pressure
+
+&lt;img src="img/mnau2_equation_of_state.svg" width="75%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# .font80[First-principles magnetic energies]
+
+### Workflow
+
+1. **Vary parameters:** pressure, adding/subtracting charge
+
+2. **Calculate energies:** standard set of spiral angles
+
+3. **Data preprocessing:** extract and clean data from output files and save to disk
+
+&lt;div style="margin-bottom: 10%;"&gt;&lt;/div&gt;
+
+.content-box-gray[
+- 1,572 calculations to run on a high-performance computing cluster
+
+- 64 to 128 cores and 1–2 hours runtime per calculation
+]
+
+---
+
+# .font80[First-principles magnetic energies]
+
+&lt;img src="img/mnau2_spiral_energies.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Model training
+
+.grid[
+.content-box-yellow.grid-valign[
+**Model training**
+
+- Train model using regression techniques
+
+- Cross-validation
+
+- Model/feature selection
+]
+]
+
+---
+
+# Model training methods
+
+&lt;img src="img/scikit-learn-frontpage.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+- **Model features:** derived from 1D Heisenberg model, consider cutoffs of up to 5 neighbors
+
+- **Regression:** ordinary least squares (ridge regression also checked)
+
+- **Cross-validation technique:** repeated k-fold (10 folds, 20 repeats), score using mean-squared error
+
+- **Model selection approach:** select the neighbor cutoff where improvements in mean-squared error become marginal
+
+---
+
+# Cross-validation results
+
+&lt;img src="img/mnau2_heisenberg_1d_crossval_mse.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Selected model performance
+
+&lt;img src="img/mnau2_heisenberg_1d_obsv_vs_pred.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# .font80[Fitted parameters vs pressure]
+
+&lt;img src="img/mnau2_exchange_vs_pressure.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# .font80[Spiral angle vs pressure]
+
+&lt;img src="img/mnau2_angle_vs_pressure.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# .font60[Build spiral model using _collinear_ calculations]
+
+.content-box-red.center[
+**Recent and ongoing work**
+]
+
+&lt;div style="margin-bottom: 7%;"&gt;&lt;/div&gt;
+
+- Noncollinear magnetic order is typically **not** well-behaved like manganese auride
+
+- First-principles computational discovery of noncollinear magnetic order is difficult
+
+- Computing and analyzing the magnetic energy landscape from a trained model is far easier
+
+- Train Heisenberg model on magnetic energies for collinear magnetic patterns, then use it to detect noncollinear order
+
+- Use manganese auride to prototype this idea
+
+---
+
+# Preliminary results
+
+&lt;img src="img/mnau2_col_only_obsv_vs_pred.svg" width="60%" style="display: block; margin: auto;" /&gt;
+
+| method       | J&lt;sub&gt;1&lt;/sub&gt; | J&lt;sub&gt;2&lt;/sub&gt; | J&lt;sub&gt;3&lt;/sub&gt; | J&lt;sub&gt;4&lt;/sub&gt; | `\(\varphi\)` |
+| ------       | -------       | -------       | -------       | -------       | -------   |
+| collinear    | -6.419532     | 2.911147      | -0.174256     | -0.259623     | 63.5      |
+| noncollinear | -6.703701     | 3.287076      | -0.31799      | -0.235331     | 65.9      |
+
+---
+
+# Where to go from here
+
+.grid[
+.pull-up[
+.content-box-green[
+**What's done**
+
+- Numerical study of the phase diagram of 1D spiral model
+- Is the pressure-induced unraveling of the spiral angle to ferromagnetic order continuous or discontinous?
+]
+]
+
+.pull-lower-left[
+&lt;img src="img/mnau2_phase_transition_diagram.png" width="56%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-lower-right[
+&lt;img src="img/mnau2_phase_diagram.gif" width="65%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+# Where to go from here
+
+.grid[
+.pull-up[
+.content-box-yellow[
+**Ongoing work**
+
+- Extend model parameters to explicitly depend on pressure
+- Numerical finite temperature studies using Markov-Chain Monte Carlo simulations
+- Automating the computational discovery of noncollinear magnetic order
+]
+]
+
+.pull-down[
+&lt;img src="img/github_spyns.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+---
+
+class: clear, center, middle
+
+# .black[Questions?]
+
+&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=796px&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/js/remark-latest.min.js"></script>
+<script src="libs/js/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
