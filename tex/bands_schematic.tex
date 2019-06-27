@@ -1,0 +1,71 @@
+\RequirePackage{luatex85,shellesc}
+\documentclass[tikz, convert={outext=.svg, command=\unexpanded{pdf2svg \infile\space\outfile}}]{standalone}
+\usepackage{luaotfload}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\definecolor{tableau1}{RGB}{78,121,167}
+\definecolor{tableau2}{RGB}{242,142,43}
+\definecolor{tableau3}{RGB}{225,87,89}
+\UseMicrotypeSet[protrusion]{basicmath}
+\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
+\setmainfont{Roboto}
+\setmathfont{Libertinus Math}
+
+\usetikzlibrary{arrows,calc,shapes.callouts}
+\tikzset{
+  vertaxisline/.style = {
+    line width=0.75pt,
+    mainlevel,
+    shorten >=3.0pt,
+    ->,
+    >=latex'
+  },
+  fermi-level/.style = {
+    line width=0.5pt,
+    dashed
+  },
+  band-empty/.style = {
+    draw=black
+  },
+  band-filled/.style = {
+    draw=tableau2,
+    fill=tableau2
+  },
+  textlabel class/.style={
+    every text node part/.style={
+      align=center,
+      font={\footnotesize}
+    }
+  },
+  gaplabel class/.style={
+    every text node part/.style={
+      align=center,
+      font={\normalsize}
+    }
+  },
+}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \draw[band-filled] (3, 0) rectangle (5,1);
+  \draw[band-filled] (3, 1.5) rectangle (5,1.8);
+
+  \draw[band-empty] (3, 0) rectangle (5,1);
+  \draw[band-empty] (3, 1.5) rectangle (5,2);
+  \draw[band-empty] (3, 2.7) rectangle (5,3);
+
+  \draw[fermi-level] (2.5,1.8) -- (5.5,1.8);
+  
+  \node[textlabel class] (fermi-level-label) at (6,1.8) {Fermi\\energy};
+  \node[gaplabel class] (gap-label) at (4,2.35) {gap};
+
+  \draw[vertaxisline] (2.25, 0.5) -- (2.25, 2.75);
+  \node[textlabel class] (energy-label) at (1.75,1.5) {energy};
+
+\end{tikzpicture}
+
+\end{document}

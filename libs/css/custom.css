@@ -292,6 +292,68 @@
 
 /******************
  *
+ * Advanced layouts
+ *
+ ****************/
+
+.flex {
+  display: flex;
+}
+
+.valign {
+  justify-content: center;
+  align-self: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  height: 90%;
+}
+
+.grid-valign {
+  grid-column: 1 / 11;
+  align-self: center;
+}
+
+.pull-left-40 {
+  grid-column: 1 / 5;
+}
+
+.pull-right-60 {
+  grid-column: 5 / 11;
+}
+
+.pull-left-60 {
+  grid-column: 1 / 7;
+}
+
+.pull-right-40 {
+  grid-column: 7 / 11;
+}
+
+.pull-up {
+  grid-column: 1 / 11;
+  grid-row: 1 / 3;
+}
+
+.pull-down {
+  grid-column: 1 / 11;
+  grid-row: 3 / 5;
+}
+
+.pull-lower-left {
+  grid-column: 1 / 6;
+  grid-row: 3 / 8;
+}
+
+.pull-lower-right {
+  grid-column: 6 / 11;
+  grid-row: 3 / 8;
+}
+
+/******************
+ *
  * Coloured content boxes
  *
  ****************/
@@ -307,10 +369,9 @@
 
 .content-box-blue, .content-box-gray, .content-box-grey, .content-box-army, .content-box-green, .content-box-purple, .content-box-red, .content-box-yellow {
     border-radius: 15px;
-    margin: 0 0 25px;
+    margin: 0 0 20px;
     overflow: hidden;
-    padding: 20px;
-    width: 100%;
+    padding: 10px;
 }
 
 .content-box-blue {

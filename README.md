@@ -1,4 +1,4 @@
-# Teaching students and modeling magnets<br>_The computational and data sciences in academia_
+# The corkscrew magnetism of MnAu<sub>2</sub><br>_Intersecting data science and materials simulations_
 
 James K. Glasbrenner
 
